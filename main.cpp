@@ -119,6 +119,21 @@ void printPath(pair<int,int> exitcell,
 // ----------------------------------------------------------
 // bool dfs(……) {
 //     // Your code here
+    // base case
+        // if outofbounds return false
+        // if is wall return false
+        // if already visisted return false
+        // if
+    // success case
+        // if current coordiantes == exit coordiantes return true
+    // recursive case
+        // need to mark the last visted one to make sure no loops
+        // then figure out all 4 directions
+            // figure da row/columns
+            // parent of current is the marked
+            // dfs with current
+            // if dfs == true then return true
+            // else means all directions failed, dead end :(
 // }
 
 
