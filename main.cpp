@@ -117,15 +117,19 @@ void printPath(pair<int,int> exitcell,
 // STUDENTS IMPLEMENT DFS HERE
 // Add arguments, return type, and logic
 // ----------------------------------------------------------
-// bool dfs(……) {
+bool dfs(int r, int c, vector<vector<int>>& maze, vector<vector<bool>>& visited, vector<vector<int>>& parent_r,  vector<vector<int>>& parent_c, int exit_r, int exit_c) {
 //     // Your code here
     // base case
         // if outofbounds return false
+        //              Check row                   Check column
+        if ( ( (r > maze.size() - 1) || (r < 0) ) || ( (c > maze[0].size() - 1) || (c < 0) ) ) { return false; }
         // if is wall return false
+        if (maze[r][c] == 1) { return false; }
         // if already visisted return false
-        // if
+        if (visited[r][c] == true) { return false; }
     // success case
         // if current coordiantes == exit coordiantes return true
+        if ( (r == exit_r) && (c == exit_c) ) { return true; }
     // recursive case
         // need to mark the last visted one to make sure no loops
         // then figure out all 4 directions
@@ -134,7 +138,7 @@ void printPath(pair<int,int> exitcell,
             // dfs with current
             // if dfs == true then return true
             // else means all directions failed, dead end :(
-// }
+}
 
 
 // ----------------------------------------------------------
