@@ -118,7 +118,6 @@ void printPath(pair<int,int> exitcell,
 // Add arguments, return type, and logic
 // ----------------------------------------------------------
 bool dfs(int r, int c, vector<vector<int>>& maze, vector<vector<bool>>& visited, vector<vector<int>>& parent_r,  vector<vector<int>>& parent_c, int exit_r, int exit_c) {
-//     // Your code here
     // base case
         // if outofbounds return false
         //              Check row                   Check column
@@ -132,12 +131,23 @@ bool dfs(int r, int c, vector<vector<int>>& maze, vector<vector<bool>>& visited,
         if ( (r == exit_r) && (c == exit_c) ) { return true; }
     // recursive case
         // need to mark the last visted one to make sure no loops
+        visited[r][c] = true;
         // then figure out all 4 directions
+        for (int i = 0; i < 4; i++) { // if something goes wrong while iterating during tests check here
             // figure da row/columns
+            int new_curr_c = c + dc[i];
+            int new_curr_r = r + dr[i];
             // parent of current is the marked
+            parent_c[new_curr_r][new_curr_c] = c;
+            parent_r[new_curr_r][new_curr_c] = r;
             // dfs with current
+            bool traversed = dfs(new_curr_r, new_curr_c, maze, visited, parent_r, parent_c, exit_r, exit_c);
             // if dfs == true then return true
-            // else means all directions failed, dead end :(
+            if (traversed == true) { return true; }
+            // else keep checking all neighbors
+        }
+        // means all directions failed, dead end :(
+        return false;
 }
 
 
